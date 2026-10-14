@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INTECH | 業務ツール</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f9;color:#19243a;font-family:"Segoe UI","Yu Gothic",Meiryo,sans-serif}
+header{background:#10274b;color:white;padding:35px max(24px,calc((100vw - 920px)/2))}
+header small{letter-spacing:.2em;color:#9bbbe8}h1{font-size:clamp(25px,4vw,36px);margin:12px 0 5px}
+header p{color:#d4e2f7;margin:0}main{max-width:920px;margin:32px auto;padding:0 18px}
+.intro{font-weight:700;margin-bottom:18px}.list{display:grid;gap:13px}
+.tool{display:flex;align-items:center;gap:18px;background:white;border:1px solid #dce4ef;border-radius:14px;padding:22px 24px;text-decoration:none;color:inherit;box-shadow:0 3px 12px #132a4910;transition:.15s}
+.tool:hover,.tool:focus-visible{border-color:#3172c8;transform:translateY(-2px);box-shadow:0 6px 18px #132a4922}
+.number{font-size:20px;font-weight:800;color:#3172c8}.detail{display:flex;flex:1;flex-direction:column;gap:5px}
+.detail strong{font-size:18px}.detail small{font-size:13px;color:#617089}.arrow{font-size:25px;color:#3172c8}
+footer{text-align:center;font-size:12px;color:#718096;padding:24px}@media(max-width:500px){.tool{padding:18px 15px;gap:12px}.detail strong{font-size:16px}}
+
+.picker{background:white;padding:26px;border:1px solid #dce4ef;border-radius:16px;display:grid;gap:13px;box-shadow:0 3px 12px #132a4910}
+.picker label{font-weight:700}.picker select{width:100%;padding:15px;border:1px solid #aebdd0;border-radius:9px;font-size:16px;background:white;color:#19243a}
+.open-tool{display:block;text-align:center;background:#2468bd;color:white;text-decoration:none;border-radius:9px;padding:16px;font-weight:700}
+.open-tool.disabled{background:#a5b0bf;cursor:not-allowed}.hint{font-size:13px;color:#617089;line-height:1.7}
+details{margin-top:26px}summary{cursor:pointer;font-weight:700;padding:12px 0}details .list{margin-top:10px}
+</style></head><body>
+<header><small>INTECH BUSINESS TOOLS</small><h1>業務ツール ポータル</h1><p>利用するツールを選択してください。</p></header>
+<main>
+<p class="intro">使用するツールを選択</p>
+<div class="picker">
+<label for="tool-select">業務ツール</label>
+<select id="tool-select" aria-label="使用するツールを選択">
+<option value="">▼ ツールを選択してください</option>
+<option value="https://ukigaitool.github.io/iyakukinsupport/">① 違約金サポート</option>
+<option value="https://intech-ukigai.github.io/goukeikingaku/">② 料金計算ツール</option>
+<option value="https://intech-ukigai.github.io/goukeikingaku/form.html">③ お申込みフォーム</option>
+<option value="https://intech-ukigai.github.io/keisan/">④ 資材発注フォーム</option>
+<option value="https://intech-ukigai.github.io/option_mail/">⑤ オプション解約文章作成ツール</option>
+<option value="https://ukigaitool.github.io/iyakukin/">⑥ 違約金・工事費残債計算ツール</option>
+</select>
+<a id="open-tool" class="open-tool disabled" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">ツールを開く ↗</a>
+</div>
+<p class="hint">プルダウンで選択して「ツールを開く」を押してください。リンク先は新しいタブで開きます。</p>
+<details><summary>すべてのツールを一覧表示</summary><div class="list"><a class="tool" href="https://ukigaitool.github.io/iyakukinsupport/" target="_blank" rel="noopener noreferrer"><span class="number">01</span><span class="detail"><strong>違約金サポート</strong><small>違約金の確認・計算</small></span><span class="arrow">↗</span></a>
+<a class="tool" href="https://intech-ukigai.github.io/goukeikingaku/" target="_blank" rel="noopener noreferrer"><span class="number">02</span><span class="detail"><strong>料金計算ツール</strong><small>料金や合計金額を計算</small></span><span class="arrow">↗</span></a>
+<a class="tool" href="https://intech-ukigai.github.io/goukeikingaku/form.html" target="_blank" rel="noopener noreferrer"><span class="number">03</span><span class="detail"><strong>お申込みフォーム</strong><small>申込み情報の入力</small></span><span class="arrow">↗</span></a>
+<a class="tool" href="https://intech-ukigai.github.io/keisan/" target="_blank" rel="noopener noreferrer"><span class="number">04</span><span class="detail"><strong>資材発注フォーム</strong><small>資材発注に関する入力</small></span><span class="arrow">↗</span></a>
+<a class="tool" href="https://intech-ukigai.github.io/option_mail/" target="_blank" rel="noopener noreferrer"><span class="number">05</span><span class="detail"><strong>オプション解約文章作成ツール</strong><small>オプション解約の案内文を作成</small></span><span class="arrow">↗</span></a>
+<a class="tool" href="https://ukigaitool.github.io/iyakukin/" target="_blank" rel="noopener noreferrer"><span class="number">06</span><span class="detail"><strong>違約金・工事費残債計算ツール</strong><small>違約金・工事費残債の計算</small></span><span class="arrow">↗</span></a></div></details>
+</main><footer>© INTECH</footer><script>
+const select=document.getElementById('tool-select');
+const link=document.getElementById('open-tool');
+select.addEventListener('change',()=>{
+  const url=select.value;
+  link.href=url||'#';
+  link.classList.toggle('disabled',!url);
+  link.setAttribute('aria-disabled',String(!url));
+});
+link.addEventListener('click',e=>{if(!select.value)e.preventDefault();});
+</script></body></html>
